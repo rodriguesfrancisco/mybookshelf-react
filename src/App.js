@@ -2,18 +2,24 @@ import React, { Fragment } from 'react';
 import Header from './components/Header';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Login from './Login';
-import Home from './Home';
+import Landing from './Landing';
+import useFindUser from './hooks/useFindUser';
+import { UserContext } from './hooks/UserContext';
 
 function App() {
+  const { user, setUser, isLoading } = useFindUser();
+
   return (
     <Router>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Fragment>
-          <Header />
-          <Route path="/" component={Home} />
-        </Fragment>
-      </Switch>
+      <UserContext.Provider value={{ user, setUser, isLoading }}>
+        <Switch>
+          <Fragment>
+            <Header />
+            <Route path="/login" component={Login} exact={true} />
+            <Route path="/" component={Landing} exact={true} />
+          </Fragment>
+        </Switch>
+      </UserContext.Provider>
     </Router>
   );
 }

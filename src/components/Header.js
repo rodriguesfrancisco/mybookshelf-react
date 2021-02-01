@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Flex, Button, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const Header = props => {
+const Header = (props) => {
   const [show, setShow] = React.useState(false);
   const handleToggle = () => setShow(!show);
 
@@ -16,7 +16,7 @@ const Header = props => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <a href="/">
+        <Link to="/">
           <Text
             fontSize="3xl"
             letterSpacing={'-.1rem'}
@@ -25,7 +25,7 @@ const Header = props => {
           >
             My Bookshelf
           </Text>
-        </a>
+        </Link>
       </Flex>
 
       <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>

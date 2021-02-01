@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Image, Container, Flex, Square, Text } from '@chakra-ui/react';
 
-export default function Home() {
+export default function Landing() {
   return (
     <Container maxWidth="6xl">
       <Flex height="calc(100vh - 88px)">

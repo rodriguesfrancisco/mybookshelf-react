@@ -11,15 +11,18 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
+import useAuth from '../hooks/useAuth';
 
 export default function Login() {
+  const { loginUser } = useAuth();
+
   const initialValues = {
     email: '',
     password: ''
   };
 
   function onLoginSubmit(values, actions) {
-    console.log(values);
+    loginUser(values);
   }
 
   return (
@@ -38,7 +41,7 @@ export default function Login() {
           </Box>
           <Box marginY={4} textAlign="left">
             <Formik initialValues={initialValues} onSubmit={onLoginSubmit}>
-              {props => (
+              {(props) => (
                 <Form>
                   <Field name="email">
                     {({ field, form }) => (
@@ -51,7 +54,7 @@ export default function Login() {
                       </FormControl>
                     )}
                   </Field>
-                  <Field name="senha">
+                  <Field name="password">
                     {({ field, form }) => (
                       <FormControl
                         isInvalid={form.errors.name && form.touched.name}
